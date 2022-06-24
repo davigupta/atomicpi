@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Kernel-visible signals
 
@@ -6,9 +6,10 @@
 # ATOMICPICHIP_* constants: Chip ID " " Index in chip
 # Think gpioget $ATOMICPICHIP_ISH_GPIO_0 (without quotes)
 
-for i in {0..3}; do
-eval gpiochip$i=$(cat /sys/bus/gpio/devices/gpiochip$i/firmware_node/physical_node/gpio/gpiochip*/base)
-done
+gpiochip0=$(cat /sys/bus/gpio/devices/gpiochip0/firmware_node/physical_node/gpio/gpiochip*/base)
+gpiochip1=$(cat /sys/bus/gpio/devices/gpiochip1/firmware_node/physical_node/gpio/gpiochip*/base)
+gpiochip2=$(cat /sys/bus/gpio/devices/gpiochip2/firmware_node/physical_node/gpio/gpiochip*/base)
+gpiochip3=$(cat /sys/bus/gpio/devices/gpiochip3/firmware_node/physical_node/gpio/gpiochip*/base)
 
 # External GPIO
 ATOMICPI_ISH_GPIO_0=$(expr $gpiochip2 + 21)
